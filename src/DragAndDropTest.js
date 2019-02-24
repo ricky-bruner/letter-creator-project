@@ -3,27 +3,31 @@ import './App.css';
 
 export default class DragAndDropTest extends Component {
     state = {        
-        tasks: [
+        generatedFields: [
             {
-                name:"Learn Angular",
-                category:"wip", 
-                bgcolor: "yellow"
+                name:"Provider Name",
+                category:"provider"
             },  
             {
-                name:"React", 
-                category:"wip", 
-                bgcolor:"pink"
+                name:"Provider Address 1", 
+                category:"provider" 
             },  
             {
-                name:"Vue", 
-                category:"complete", 
-                bgcolor:"skyblue"
+                name: "Provider Address 2", 
+                category:"provider" 
             },
             {
-                name: "Vanilla JS",
-                category: "wip",
-                bgcolor: "lime"
-            }          
+                name: "Provider City",
+                category: "provider"
+            },
+            {
+                name: "Provider State",
+                category: "provider"
+            } ,
+            {
+                name: "Provider Zip",
+                category: "provider"
+            }           
         ]
     }
 
@@ -32,31 +36,30 @@ export default class DragAndDropTest extends Component {
     }
 
     onDragStart = (e, name) => {
-        console.log("dragstart: ", name);
         e.dataTransfer.setData("name", name);
     }
 
     onDrop = (ev, cat) => {       
         let name = ev.dataTransfer.getData("name");
-        let tasks = this.state.tasks.filter((task) => {
-            if (task.name === name) {
-                task.category = cat;           
+        let generatedFields = this.state.generatedFields.filter((field) => {
+            if (field.name === name) {
+                field.category = cat;           
             }              
-            return task;       
+            return field;       
         });        
         this.setState({           
             ...this.state,           
-            tasks       
+            generatedFields       
         });    
     }
 
     render() {
-        var tasks = { 
-            wip: [], 
+        var generatedFields = { 
+            provider: [], 
             complete: []        
         }      
-        this.state.tasks.forEach ((t) => {               
-            tasks[t.category].push(<div key={t.name} onDragStart={(e)=>this.onDragStart(e, t.name)} draggable className="draggable" style={{backgroundColor: t.bgcolor}}>{t.name}</div>);        
+        this.state.generatedFields.forEach ((f) => {               
+            generatedFields[f.category].push(<div key={f.name} onDragStart={(e)=>this.onDragStart(e, f.name)} draggable className="draggable">{f.name}</div>);        
         });
 
         return (
@@ -65,14 +68,17 @@ export default class DragAndDropTest extends Component {
                 <div className="container-drag">
                     DRAG & DROP DEMO
                 </div>
-                <div className="wip" onDragOver={(e)=>this.onDragOver(e)} onDrop={(e)=>{this.onDrop(e, "wip")}}>
-                    <span className="task-header">WIP</span>                    
-                    {tasks.wip}                
-                </div>                
-                <div className="droppable" onDragOver={(e)=>this.onDragOver(e)} onDrop={(e)=>this.onDrop(e, "complete")}>     
-                    <span className="task-header">COMPLETED</span>                     
-                    {tasks.complete}                
-                </div>    
+                <div className="flex-around">
+                    <div className="generated-field-menu" onDragOver={(e)=>this.onDragOver(e)} onDrop={(e)=>{this.onDrop(e, "provider")}}>
+                        <span className="task-header">Provider</span>                    
+                        {generatedFields.provider}                
+                    </div>                
+                    <div className="letter-page" onDragOver={(e)=>this.onDragOver(e)} onDrop={(e)=>this.onDrop(e, "complete")}>     
+                        <span className="task-header">COMPLETED</span>                     
+                        {generatedFields.complete}                
+                    </div>    
+
+                </div>
             </div>
         );
     }

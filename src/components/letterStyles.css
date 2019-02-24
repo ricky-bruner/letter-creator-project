@@ -5,10 +5,30 @@
 
 .letter-page {
     width: 65%;
-    background: lightgray;
+    background: rgb(240, 240, 240);
+    padding: .5em;
 }
 
 .generated-field-menu {
     width: 25%;
-    background: lightblue;
+    background: rgb(204, 239, 250);
+    padding: .5em;
+}
+
+.generated-menu-list {
+    padding: 0;
+}
+
+.generated-menu-list li {
+    list-style-type: none;
+    background: rgb(240, 240, 240);
+    padding: .2em;
+    margin: .5em;
+}
+
+.build-area .generated-menu-list li {
+    list-style-type: none;
+    background: rgb(204, 239, 250) !important;
+    padding: .2em;
+    margin: .5em;
 }

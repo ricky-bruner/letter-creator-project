@@ -3,28 +3,32 @@ import HeaderSelection from "./headers/HeaderSelection";
 
 export default class LetterPage extends Component {
     state = {
-        headerSelected: false,
+        headerSelected: {
+            selected: false,
+            option: ""
+        },
         addressSelected: false,
         bodySelected: false,
         signatureSelected: false,
         footerSelected: false
     }
 
-    switchSection = (section) => {
+    switchSection = (section, option) => {
         let newState = this.state;
         let key = section + "Selected";
-        newState[key] = true;
+        newState[key].selected = true;
+        newState[key].option = option;
         this.setState(newState);
     }
 
     render(){
         return (
             <div className="letter-page">
-                <HeaderSelection switchSection={this.switchSection} />
+                <HeaderSelection switchSection={this.switchSection} selected={this.state.headerSelected.selected}/>
                 {
-                    this.state.headerSelected &&
+                    this.state.headerSelected.selected &&
                     <div>
-                        Selected A Header
+                        Selected A Header: {this.state.headerSelected.option}
                     </div>
                 }
                 <div></div>
