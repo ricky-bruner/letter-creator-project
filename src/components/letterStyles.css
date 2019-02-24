@@ -1,0 +1,14 @@
+.flex-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.letter-page {
+    width: 65%;
+    background: lightgray;
+}
+
+.generated-field-menu {
+    width: 25%;
+    background: lightblue;
+}
