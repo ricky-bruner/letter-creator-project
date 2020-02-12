@@ -40,11 +40,6 @@ export default class DragAndDropTest extends Component {
         e.dataTransfer.setData("name", name);
     }
 
-    onStaticDragStart = (e, name, number) => {
-        e.dataTransfer.setData("name", name);
-        e.dataTransfer.setData("number", number);
-    }
-
     onDrop = (e, cat) => {       
         let newObj = {
             name: e.dataTransfer.getData("name"),
@@ -66,25 +61,21 @@ export default class DragAndDropTest extends Component {
         tempFields.push(newObj);
 
         this.setState({              
+            ...this.state,
             tempfields: tempFields       
         });    
     }
 
-    onStaticDrop = (e, cat) => {       
-        let newObj = {
-            name: e.dataTransfer.getData("name"),
-            category: cat,
-            number: e.dataTransfer.getData("number")
-        };
-
+    removeTemp = (name, number) => {
         let newFields = this.state.tempFields;
-        let index = newFields.findIndex(x => x.name === newObj.name && x.number === newObj.number);
+        let index = newFields.findIndex(x => x.name === name && x.number === number);
 
         if(index !== -1){
             newFields.splice(index, 1);
         }
 
         this.setState({                   
+            ...this.state,
             tempFields: newFields
         }); 
     }
@@ -97,16 +88,16 @@ export default class DragAndDropTest extends Component {
                     DRAG & DROP DEMO
                 </div>
                 <div className="flex-around">
-                    <div className="generated-field-menu" onDragOver={(e)=>this.onDragOver(e)} onDrop={(e)=>{this.onStaticDrop(e, "complete")}}>
+                    <div className="generated-field-menu" onDragOver={(e)=>this.onDragOver(e)}>
                         <span className="task-header">Provider</span>
                         {
                             this.state.generatedFields.map((gF) => <div key={gF.name} onDragStart={(e)=>this.onDragStart(e, gF.name)} draggable className="draggable">{gF.name}</div>)
                         }                    
                     </div>                
-                    <div className="letter-page" onDragOver={(e)=>this.onDragOver(e)} onDrop={(e)=>this.onDrop(e, "complete")}>     
+                    <div className="letter-page" onDragOver={(e)=>this.onDragOver(e)} onDrop={(e)=>this.onDrop(e)}>     
                         <span className="task-header">COMPLETED</span>
                         {
-                            this.state.tempFields.map((tF) => <div key={tF.name} onDragStart={(e)=>this.onStaticDragStart(e, tF.name, tF.number)} draggable className="draggable">{tF.name}</div>)
+                            this.state.tempFields.map((tF) => <div key={tF.name} onClick={()=>this.removeTemp(tF.name, tF.number)} className="draggable">{tF.name}</div>)
                         }                      
                     </div>    
                 </div>
