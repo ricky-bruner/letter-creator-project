@@ -1,0 +1,13 @@
+.selection-menu {
+    display: flex;
+    width: 70%;
+    /* justify-content: space-around; */
+}
+
+.selection-option {
+    /* width: 30%; */
+    margin-right: 5px;
+}
+.selection-input {
+    width: 50%;
+}

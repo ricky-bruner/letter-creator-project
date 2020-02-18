@@ -12,7 +12,10 @@ export default class App extends Component {
                 category: "header",
                 type: "header-center-logo-address-right",
                 images: [],
-                textSections: []
+                textSections: [],
+                textSectionOptions: {
+                    
+                }
             }
         ],
         chunkTypes: [
@@ -37,7 +40,7 @@ export default class App extends Component {
             "times-new-roman",
             "calibri"
         ]
-    }
+    };
 
     render() {
         return (
@@ -46,7 +49,7 @@ export default class App extends Component {
                 {/* <DragAndDropTest /> */}
                 <div className="flex-around">
                     <GeneratedFieldMenu />
-                    <LetterPage />
+                    <LetterPage chunkTypes={this.state.chunkTypes} textStyles={this.state.textStyles} textFonts={this.state.textFonts} />
                 </div>
             </div>
         );
