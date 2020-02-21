@@ -3,7 +3,7 @@ import OptionsFactory from "./OptionsFactory";
 export default Object.create(null, {
     getTextMenu: {
         value: {
-            title: "Test Section Options",
+            title: "Text Section Options",
             saved: false,
             placement: "",
             options: [
