@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
+import { Button, Input } from "reactstrap";
 import MenuFactory from "../../../modules/MenuFactory";
 
 export default class TextSection extends Component {
@@ -8,9 +8,9 @@ export default class TextSection extends Component {
     }
 
     activateText = () => {
-        this.setState({
-            activated: !this.state.activated
-        });
+        this.setState({ 
+            activated: !this.state.activated 
+        }, () => { this.initiateTextMenu(); });
     }
 
     onPropertyDrop = () => {
@@ -19,11 +19,11 @@ export default class TextSection extends Component {
         data.set = true;
         menu.options = menu.options.filter(o => o.name !== "Data Generated");
         menu.options.push(data);
-        this.props.addMenuOptions(menu);
+        this.props.addMenu(menu);
     }
 
     initiateTextMenu = () => {
-        this.props.addMenuOptions(MenuFactory.getTextMenu);
+        this.props.addMenu(MenuFactory.getTextMenu);
     }
     
     render(){
@@ -32,19 +32,17 @@ export default class TextSection extends Component {
                 {
                     !this.state.activated &&
                     <div>
-                        <Button size="sm" onClick={() => this.activateText()}>
+                        <Button size="sm" color="primary" onClick={() => this.activateText()}>
                             Add Content
                         </Button>
                     </div>
                 }
                 {
-                    this.state.addContent &&
+                    this.state.activated &&
                     <div>
                         {
                             !this.state.contentActivated &&
-                            <div onClick={() => this.initiateTextMenu()}>
-                                Type or Drag Data
-                            </div>
+                            <Input placeholder="Type or Drag Data" size="sm" onClick={() => this.initiateTextMenu()} />
                         }
                     </div>
                 }

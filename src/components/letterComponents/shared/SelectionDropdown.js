@@ -17,20 +17,20 @@ export default class SelectionDropdown extends Component {
     render(){
         return (
             <div className="selection-option">
-                <UncontrolledDropdown size="sm" key={this.props.id} onChange={(e) => this.handleSelection(e)}>
+                <UncontrolledDropdown size="sm">
                     <DropdownToggle color="primary" caret>
                         {
                             !this.state.selected &&
-                            this.props.type
+                            this.props.options.name
                         }
-                        {
+                        {/* {
                             this.state.selected &&
                             this.props.selectedValue
-                        }
+                        } */}
                     </DropdownToggle>
                     <DropdownMenu>
                         {
-                            this.props.options.map(x => <DropdownItem id={this.props.id} onClick={(e) => BaseMethods.handleSelection(this, e)}>{x}</DropdownItem>)
+                            this.props.options.options.map(x => <DropdownItem>{x}</DropdownItem>)
                         }
                     </DropdownMenu>
                 </UncontrolledDropdown>

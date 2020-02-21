@@ -20,6 +20,10 @@ export default class LetterPage extends Component {
         return (
             <div className="letter-page">
                 <div>
+                    {
+                        this.state.lines.length > 0 &&
+                        this.state.lines.map(l => <LetterLine parent={this} />)
+                    }
                     <LetterLine parent={this} />
                 </div>
             </div>

@@ -8,7 +8,7 @@ export default class CheckboxOption extends Component {
             <div>
                 <FormGroup check>
                     <Label check>
-                        <Input type="checkbox" id="checkbox2" />{' '}DATA
+                        <Input type="checkbox" id="checkbox" />{' '}{this.props.options.name}
                     </Label>
                 </FormGroup>
             </div>
