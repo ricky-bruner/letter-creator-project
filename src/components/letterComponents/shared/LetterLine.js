@@ -54,7 +54,7 @@ export default class LetterLine extends Component {
                     <Alert color="info" className="letter-line">
                         <div className="letter-line-contents">
                             <div className="text-section-container">
-                                <TextSection addMenu={this.addMenu} />
+                                <TextSection menus={this.state.menus} addMenu={this.addMenu} />
                             </div>
                             <Button size="sm" color="primary" onClick={() => this.saveTextSection()}>Complete Line</Button>
                         </div>

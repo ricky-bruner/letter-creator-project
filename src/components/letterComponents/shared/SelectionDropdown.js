@@ -8,7 +8,7 @@ export default class SelectionDropdown extends Component {
     }   
 
     handleSelection = (e) => {
-        this.props.handleFieldChange(e);
+        BaseMethods.handleFieldChange(this, e);
         this.setState({
             selected: true
         })
@@ -23,14 +23,16 @@ export default class SelectionDropdown extends Component {
                             !this.state.selected &&
                             this.props.options.name
                         }
-                        {/* {
+                        {
                             this.state.selected &&
-                            this.props.selectedValue
-                        } */}
+                            this.state[this.props.options.data]
+                        }
                     </DropdownToggle>
                     <DropdownMenu>
+                        <DropdownItem disabled>{this.props.options.name}</DropdownItem>
+                        <DropdownItem divider></DropdownItem>
                         {
-                            this.props.options.options.map(x => <DropdownItem>{x}</DropdownItem>)
+                            this.props.options.options.map(x => <DropdownItem id={this.props.options.data} onClick={(e) => this.handleSelection(e)}>{x}</DropdownItem>)
                         }
                     </DropdownMenu>
                 </UncontrolledDropdown>

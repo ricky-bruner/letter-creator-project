@@ -23,7 +23,15 @@ export default class TextSection extends Component {
     }
 
     initiateTextMenu = () => {
-        this.props.addMenu(MenuFactory.getTextMenu);
+        let menu = MenuFactory.getTextMenu;
+        let placement = 0;
+
+        if(this.props.menus.length > 0){
+            placement = this.props.menus.filter(m => m.title !== "Line Options").length;
+        }
+        
+        menu.placement = placement++;
+        this.props.addMenu(menu);
     }
     
     render(){
@@ -42,7 +50,7 @@ export default class TextSection extends Component {
                     <div>
                         {
                             !this.state.contentActivated &&
-                            <Input placeholder="Type or Drag Data" size="sm" onClick={() => this.initiateTextMenu()} />
+                            <Input className="text-section" placeholder="Type or Drag Data" size="sm" onClick={() => this.initiateTextMenu()} />
                         }
                     </div>
                 }

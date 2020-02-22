@@ -36,6 +36,13 @@ export default Object.create(null, {
                     set: false
                 },
                 {
+                    data: "placementSelected",
+                    name: "Arrangement",
+                    options: OptionsFactory.placementOptions,
+                    type: "select",
+                    set: false
+                },
+                {
                     data: "spaceAdded",
                     name: "Add Space After",
                     options: [],
